@@ -23,11 +23,12 @@
 <body>
     <script type="text/javascript">
 
-        var cityName = $(this).attr("data-name");
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=0f44f1228d693a13edb502bf28d30b81";
 
         document.getElementById("btn").addEventListener("click",function(event){
             event.preventDefault()
+
+            var cityName = $("#city-input").val();
+            var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=0f44f1228d693a13edb502bf28d30b81";
 
             $.ajax({
             url: queryURL,
