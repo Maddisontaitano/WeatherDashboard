@@ -23,13 +23,17 @@
 <body>
     <script type="text/javascript">
 
+        var button= document.getElementById("city-input")
         var cityName = $(this).attr("data-name");
-         var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=298a6bc4c725cb1dc874f64cb9a101d5";
+        var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=298a6bc4c725cb1dc874f64cb9a101d5";
 
-         $.ajax({
-        url: queryURL,
-        method: "GET"
-      })
+
+         button.addEventListener("click", 
+            $.ajax({
+            url: queryURL,
+            method: "GET"
+            })
+        );
 
  </script>
 </body>
