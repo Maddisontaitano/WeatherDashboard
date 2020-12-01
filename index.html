@@ -9,10 +9,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <form id="city-form" class="city-form" action="action_page.php">
+    <form id="city-form" class="city-form">
         <label for="city-input">Search for a city!</label> <br>
         <input type="text" id= "city-input"placeholder="Search.." name="search"><br>
-        <button type="submit"><i class="fa fa-search"></i></button><br>
+        <button type="submit" id="btn"><i class="fa fa-search"></i></button><br>
         <!-- Button triggers new city to be added -->
         <input id="add-city" type="submit" value="add this city to your history!">
       </form>
@@ -23,18 +23,22 @@
 <body>
     <script type="text/javascript">
 
-        var button= document.getElementById("city-input")
         var cityName = $(this).attr("data-name");
-        var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=298a6bc4c725cb1dc874f64cb9a101d5";
+        var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=0f44f1228d693a13edb502bf28d30b81";
 
+        document.getElementById("btn").addEventListener("click",function(event){
+            event.preventDefault()
 
-         button.addEventListener("click", 
             $.ajax({
             url: queryURL,
             method: "GET"
             })
-        );
+        });
+         
 
+          
+            
+        
  </script>
 </body>
 </html>
