@@ -1,57 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard </title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <form id="city-form" class="city-form">
-        <label for="city-input">Search for a city!</label> <br>
-        <input type="text" id= "city-input"placeholder="Search.." name="search"><br>
-        <button type="submit" id="btn"><i class="fa fa-search"></i></button><br>
-        <!-- Button triggers new city to be added -->
-        <!-- <input id="add-city" type="submit" value="add this city to your history!">
-      </form>
-
-      
-      
-</head>
-<body>
-    <script type="text/javascript">
-
-
-        document.getElementById("btn").addEventListener("click",function(event){
-            event.preventDefault()
-
-            var cityName = $("#city-input").val();
-            var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=298a6bc4c725cb1dc874f64cb9a101d5";
-
-            $.ajax({
-            url: queryURL,
-            method: "GET"
-            })
-        });
-        var cityName = $("#city-input").val();
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=298a6bc4c725cb1dc874f64cb9a101d5";
-
-        console.log(queryURL)
-            $.ajax({
-            url: queryURL,
-            method: "GET"
-            }).then(function(result){
-              console.log(result)
-            })
-          
-            
-        
- </script>
-</body>
-</html> --> 
-
 <link
 rel="stylesheet"
 href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -90,27 +36,12 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           <div class="card-body">
                <blockquote class="blockquote mb-0">
                   <div class="currentWeather">
-                      <div class="cityname">
-                        <h5> City Searched: <span id="citySearched"></span></h5>
-                      </div>
-
-                      <div class="weather-icon">
-                        <p>Current Weather: <span id="currentWeather"></span></p>
-                      </div>
-
-                      <div class="temperature">
-                        <p>Temperature: <span id="temperature"></span></p>
-                      </div>
-
-                      <div class="humidity">
-                        <p>Humidity: <span id="humidity"></span></p>
-                      </div>
-                      <div class="windspeed">
-                        <p>Wind Speed: <span id="windSpeed"></span></p>
-                      </div>
-                      <div class='uv'>
-                        <p>UV Index: <span id="UV-index"></span></p>
-                      </div>                            
+                      <div class="cityname"></div>
+                      <div class="weather-icon"></div>
+                      <div class="temperature"></div>
+                      <div class="humidity"></div>
+                      <div class="windspeed"></div>
+                      <div class='uv'></div>                            
                   </div>
               </blockquote>
           </div>
@@ -190,5 +121,5 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </script>
-<script src="/assets/Script.js"></script>
+<script src="../Assets/script.js"></script>
 </html>
