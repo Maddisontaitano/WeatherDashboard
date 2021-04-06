@@ -32,7 +32,7 @@ function saveLocally(cityInput) {
   SaveBtns();
 
   document
-    .querySelector(".form-row")
+    .querySelector("#search-from")
     .addEventListener("submit", function (event) {
       event.preventDefault();
       let CitySelected = document.querySelector("#search-bar").value;
