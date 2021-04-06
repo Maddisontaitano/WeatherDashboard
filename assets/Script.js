@@ -45,7 +45,7 @@ function saveLocally(citySelected) {
       } else {
         getWeather(CitySelected);
         saveLocally(CitySelected);
-        renderSaveBtns();
+        SaveBtns();
       }
     });
 
@@ -62,9 +62,13 @@ function saveLocally(citySelected) {
         // .then(function (weatherResponse) {
         //   return weatherResponse.json();
         // })
-        .then(function (data) {
-          console.log(data);
-          showWeatherForToday(city, data);
+        // .then(function (data) {
+        //   console.log(data);
+        //   showWeatherForToday(city, data);
+          data.json().then(function (jsonData) {
+            showWeatherForToday(city, jsonData);
+            console.log(data)
+          })
           // Call 5 day URL with lat lon from the one day response
           let queryURLForFiveDay = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=${apiKey}`;
           fetch(queryURLForFiveDay)
@@ -75,8 +79,8 @@ function saveLocally(citySelected) {
               console.log(fiveDayData);
               showFiveDayWeather(fiveDayData);
             });
-        });
-    }
+        };
+    
 
 
     function showWeatherForToday(cityName, data) {
@@ -84,6 +88,7 @@ function saveLocally(citySelected) {
       //   "MMMM Do, YYYY"
       // );
       document.querySelector("#currentWeather").innerHTML =
+      console.log(data)
         data.weather[0].description;
       document.querySelector(
         "#currentIcon"
@@ -115,7 +120,7 @@ function saveLocally(citySelected) {
 
 
     // Click event for each saved city button - dynamic
-//WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+//
   // var savedCityButtons = document.querySelectorAll(".button");
   // savedCityButtons.forEach(function (eachButton) {
   //   eachButton.addEventListener("click", function (e) {
