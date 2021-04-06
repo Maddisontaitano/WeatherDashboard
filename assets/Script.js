@@ -56,19 +56,22 @@ function saveLocally(citySelected) {
       let queryURLForToday = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
   
       fetch(queryURLForToday)
-      .catch(
-        console.log("api doesnt work!ERROR!")
-      )
+      
+      .then(response => response.json())
+      .then(data => {
+          console.log("Data: ", data);
+          showWeatherForToday(city, data);
+      })
+      .catch(error => {
+          console.error("Error: ", error);
+      });
         // .then(function (weatherResponse) {
         //   return weatherResponse.json();
         // })
         // .then(function (data) {
         //   console.log(data);
         //   showWeatherForToday(city, data);
-          data.json().then(function (jsonData) {
-            showWeatherForToday(city, jsonData);
-            console.log(data)
-          })
+         
           // Call 5 day URL with lat lon from the one day response
           let queryURLForFiveDay = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=${apiKey}`;
           fetch(queryURLForFiveDay)
@@ -90,14 +93,15 @@ function saveLocally(citySelected) {
       document.querySelector("#currentWeather").innerHTML =
       console.log(data)
         data.weather[0].description;
-      document.querySelector(
-        "#currentIcon"
-      ).innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"/>`;
+      // document.querySelector(
+      //   "#currentIcon"
+      // ).innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"/>`;
       document.querySelector("#citySearched").innerHTML = cityName;
+      // document.querySelector("#currentWeather").innerTHML = data.weather[0].description;
       document.querySelector("#temperature").innerHTML =
         Math.round(data.main.temp) + "°F";
       document.querySelector("#humidity").innerHTML = data.main.humidity + "%";
-      document.querySelector("#wind").innerHTML =
+      document.querySelector("#windSpeed").innerHTML =
         Math.round(data.wind.speed) + "mph";
   
       $("#card-text").empty();
