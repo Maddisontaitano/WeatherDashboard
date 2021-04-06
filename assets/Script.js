@@ -32,7 +32,7 @@ function saveLocally(cityInput) {
   SaveBtns();
 
   document
-    .querySelector(".search-form")
+    .querySelector(".form-row")
     .addEventListener("submit", function (event) {
       event.preventDefault();
       let CitySelected = document.querySelector("#search-bar").value;
@@ -48,15 +48,6 @@ function saveLocally(cityInput) {
         renderSaveBtns();
       }
     });
-
-
-    var savedCityButtons = document.querySelectorAll(".saved-city-button");
-  savedCityButtons.forEach(function (eachButton) {
-    eachButton.addEventListener("click", function (e) {
-      var city = eachButton.innerHTML;
-      getWeather(city);
-    });
-  });
 
 
 
@@ -84,6 +75,19 @@ function saveLocally(cityInput) {
           });
       });
   }
+
+    // Click event for each saved city button - dynamic
+
+  var savedCityButtons = document.querySelectorAll(".button");
+  savedCityButtons.forEach(function (eachButton) {
+    eachButton.addEventListener("click", function (e) {
+      console.log("button was pressed!")
+
+      var city = eachButton.innerHTML;
+      getWeather(city);
+    });
+  });
+
 
   function showWeatherForToday(cityName, data) {
     // document.querySelector("#currentDate").innerHTML = moment().format(
