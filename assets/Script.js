@@ -64,24 +64,27 @@ function saveLocally(citySelected) {
       })
       .catch(error => {
           console.error("Error: ", error);
-      });
+     
         // .then(function (weatherResponse) {
         //   return weatherResponse.json();
         // })
         // .then(function (data) {
         //   console.log(data);
-        //   showWeatherForToday(city, data);
+        //  showWeatherForToday(city, data);
          
           // Call 5 day URL with lat lon from the one day response
           let queryURLForFiveDay = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=${apiKey}`;
-          fetch(queryURLForFiveDay)
-            .then(function (weatherResponse) {
+        
+           fetch(queryURLForFiveDay)
+          .then(function (weatherResponse) {
               return weatherResponse.json();
-            })
+          })
             .then(function (fiveDayData) {
               console.log(fiveDayData);
-              showFiveDayWeather(fiveDayData);
-            });
+             showFiveDayWeather(fiveDayData);
+             });
+
+           });
         };
     
 
@@ -91,7 +94,6 @@ function saveLocally(citySelected) {
       //   "MMMM Do, YYYY"
       // );
       document.querySelector("#currentWeather").innerHTML =
-      console.log(data)
         data.weather[0].description;
       // document.querySelector(
       //   "#currentIcon"
@@ -107,6 +109,38 @@ function saveLocally(citySelected) {
       $("#card-text").empty();
     }
   
+
+    // five day
+  function showFiveDayWeather(data) {
+    // Grabs UVI info from 5-day forecast API
+    let currentUVI = (document.querySelector(
+      "#UV-index"
+    ).innerHTML = Math.round(data.current.uvi));
+
+    // Set loop for 5-day weather
+    document.querySelector("#fiveDayContainers").innerHTML = "";
+    for (var i = 0; i < 5; i++) {
+      let forecastDates = moment()
+        .add(i + 1, "days")
+        .format("ddd MM/DD/YYYY");
+      // Build HTML from js for 5-day forecast
+      let day = document.createElement("div");
+      day.innerHTML = [
+        `<h5>${forecastDates}</h5>
+      <img src="https://openweathermap.org/img/wn/${
+        data.daily[i].weather[0].icon
+      }@2x.png">
+      <p>${data.daily[i].weather[0].description}</p>
+      <p>Temperature: ${Math.round(data.daily[i].temp.day)}°F</p>
+      <p>Humidity: ${data.daily[i].humidity}%</p>`,
+      ];
+      document.querySelector("#fiveDayContainers").appendChild(day);
+    }
+    uviBadge(data);
+    $("#card-text").empty();
+  }
+
+
     function uviBadge(data) {
       let UVIndex = $("#UV-index");
       UVIndex.innerHTML = Math.round(data.current.uvi);
